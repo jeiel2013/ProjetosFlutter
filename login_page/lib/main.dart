@@ -110,8 +110,8 @@ class _HomeState extends State<Home> {
                       ),
                       hintText: '1712345678',
                       hintStyle: TextStyle(
-                        color: const Color(0xFF696969).withOpacity(0.5),
-                      ),
+                          color: const Color(0xFF696969).withOpacity(0.5),
+                          fontFamily: "Hamon"),
                       prefixIcon: Padding(
                         padding: const EdgeInsets.only(
                             left: 16.0), // Adiciona espaçamento à esquerda
@@ -189,7 +189,7 @@ class _HomeState extends State<Home> {
                           _obscureText
                               ? Icons.visibility
                               : Icons.visibility_off,
-                              color: Colors.black,
+                          color: Colors.black,
                         ),
                         onPressed: () {
                           setState(() {
@@ -204,6 +204,61 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
+            Container(
+              padding: const EdgeInsets.only(left: 200),
+              child: TextButton(
+                onPressed: () {},
+                child: const Text(
+                  "Forgot password?",
+                  style: TextStyle(
+                      fontSize: 16.43,
+                      fontFamily: "Hamon",
+                      color: Color(0xFF2A2A2A)),
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: TextButton(
+                style: TextButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 18, horizontal: 150.0),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(17.6)) // Padding
+                    ),
+                onPressed: () {},
+                child: const Text(
+                  "Login",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: "Hamon Bold",
+                    fontSize: 19,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 65),
+              child: Row(
+                children: [
+                  const Text(
+                    "Don't have an account?",
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(
+                          fontFamily: "Hamon Bold",
+                          fontSize: 16,
+                          color: Colors.black),
+                    ),
+                  )
+                ],
+              ),
+            )
           ],
         ),
       ),
