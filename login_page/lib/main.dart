@@ -29,20 +29,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   bool isChecked = false;
-  String selectedCountryCode =
-      '+1'; // Inicializa com o código dos EUA como padrão
+  String selectedCountryCode = '+1';
   final List<String> countryCodes = [
-    '+1', // USA/Canada
-    '+44', // UK
-    '+55', // Brazil
-    '+91', // India
-    '+61', // Australia
-    '+81', // Japan
-    '+49', // Germany
-    '+33', // France
-    '+86', // China
-    '+39', // Italy
-    // Adicione mais códigos de DDD conforme necessário
+    '+1', '+44', '+55', '+91', '+61', '+81', '+49', '+33', '+86', '+39',
   ];
 
   final TextEditingController _controller = TextEditingController();
@@ -53,7 +42,7 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     _controller.addListener(() {
-      setState(() {}); // Atualiza o estado para refletir as mudanças no ícone
+      setState(() {});
     });
   }
 
@@ -70,274 +59,270 @@ class _HomeState extends State<Home> {
           ),
         ),
         backgroundColor: Colors.white,
-        elevation: 0, // Remove a sombra do AppBar
-        centerTitle: true, // Centraliza o título
+        elevation: 0,
+        centerTitle: true,
       ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Enter your mobile number",
-                    style: TextStyle(
-                      fontFamily: "Hamon",
-                      fontSize: 17,
-                      color: Color(0xFF2A2A2A),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ), // Espaço entre o texto e o campo de entrada
-                  TextField(
-                    controller: _controller,
-                    decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(18),
-                        borderSide: const BorderSide(
-                          color: Color(0xFFD1D1D1),
+      body: SingleChildScrollView( // Envolva o Column com SingleChildScrollView
+        child: Padding(
+          padding: const EdgeInsets.only(top: 110),
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Enter your mobile number",
+                        style: TextStyle(
+                          fontFamily: "Hamon",
+                          fontSize: 17,
+                          color: Color(0xFF2A2A2A),
                         ),
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(18),
-                        borderSide: const BorderSide(
-                          color: Color(0xFFD1D1D1),
-                        ),
-                      ),
-                      hintText: '1712345678',
-                      hintStyle: TextStyle(
-                          color: const Color(0xFF696969).withOpacity(0.5),
-                          fontFamily: "Hamon"),
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 16.0), // Adiciona espaçamento à esquerda
-                        child: DropdownButtonHideUnderline(
-                          // Remove a linha de sublinhado padrão do DropdownButton
-                          child: DropdownButton<String>(
-                            value: selectedCountryCode,
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                selectedCountryCode = newValue!;
-                              });
-                            },
-                            items: countryCodes
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
+                      const SizedBox(height: 10),
+                      TextField(
+                        controller: _controller,
+                        decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18),
+                            borderSide: const BorderSide(
+                              color: Color(0xFFD1D1D1),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18),
+                            borderSide: const BorderSide(
+                              color: Color(0xFFD1D1D1),
+                            ),
+                          ),
+                          hintText: '1712345678',
+                          hintStyle: TextStyle(
+                            color: const Color(0xFF696969).withOpacity(0.5),
+                            fontFamily: "Hamon",
+                          ),
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.only(left: 16.0),
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton<String>(
+                                value: selectedCountryCode,
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    selectedCountryCode = newValue!;
+                                  });
+                                },
+                                items: countryCodes
+                                    .map<DropdownMenuItem<String>>((String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          ),
+                          suffixIcon: Icon(
+                            _controller.text.length == 11
+                                ? Icons.check_circle
+                                : Icons.radio_button_unchecked,
+                            color: _controller.text.length == 11
+                                ? Colors.black
+                                : Colors.grey,
                           ),
                         ),
+                        keyboardType: TextInputType.number,
                       ),
-                      suffixIcon: Icon(
-                        _controller.text.length == 11
-                            ? Icons.check_circle
-                            : Icons.radio_button_unchecked,
-                        color: _controller.text.length == 11
-                            ? Colors.black
-                            : Colors.grey, // Define a cor corretamente
-                      ),
-                    ),
-                    keyboardType: TextInputType.number,
-                  ),
-                ],
-              ),
-            ),
-            // Password ----------------------------------------------------------------------
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Enter your password",
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: Color(0xFF2A2A2A),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ), // Espaço entre o texto e o campo de entrada
-                  TextField(
-                    controller: _passwordController,
-                    obscureText: _obscureText,
-                    decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(18),
-                        borderSide: const BorderSide(
-                          color: Color(0xFFD1D1D1),
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(18),
-                        borderSide: const BorderSide(
-                          color: Color(0xFFD1D1D1),
-                        ),
-                      ),
-                      hintText: '*********',
-                      hintStyle: TextStyle(
-                        color: const Color(0xFF696969).withOpacity(0.5),
-                      ),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _obscureText
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                          color: Colors.black,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _obscureText =
-                                !_obscureText; // Alterna o estado de visibilidade
-                          });
-                        },
-                      ),
-                    ),
-                    keyboardType: TextInputType.text,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.only(left: 200),
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "Forgot password?",
-                  style: TextStyle(
-                      fontSize: 16.43,
-                      fontFamily: "Hamon",
-                      color: Color(0xFF2A2A2A)),
-                ),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: TextButton(
-                style: TextButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 18, horizontal: 150.0),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(17.6)) // Padding
-                    ),
-                onPressed: () {},
-                child: const Text(
-                  "Login",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: "Hamon Bold",
-                    fontSize: 19,
+                    ],
                   ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 65),
-              child: Row(
-                children: [
-                  const Text(
-                    "Don't have an account?",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: "Hamon",
-                      color: Color(0xFF696969),
-                    ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Enter your password",
+                        style: TextStyle(
+                          fontSize: 17,
+                          color: Color(0xFF2A2A2A),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      TextField(
+                        controller: _passwordController,
+                        obscureText: _obscureText,
+                        decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18),
+                            borderSide: const BorderSide(
+                              color: Color(0xFFD1D1D1),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18),
+                            borderSide: const BorderSide(
+                              color: Color(0xFFD1D1D1),
+                            ),
+                          ),
+                          hintText: '*********',
+                          hintStyle: TextStyle(
+                            color: const Color(0xFF696969).withOpacity(0.5),
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _obscureText ? Icons.visibility : Icons.visibility_off,
+                              color: Colors.black,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
+                          ),
+                        ),
+                        keyboardType: TextInputType.text,
+                      ),
+                    ],
                   ),
-                  TextButton(
+                ),
+                Container(
+                  padding: const EdgeInsets.only(left: 190),
+                  child: TextButton(
                     onPressed: () {},
                     child: const Text(
-                      "Sign Up",
+                      "Forgot password?",
                       style: TextStyle(
-                          fontFamily: "Hamon Bold",
-                          fontSize: 16,
-                          color: Colors.black),
+                          fontSize: 16.43,
+                          fontFamily: "Hamon",
+                          color: Color(0xFF2A2A2A)),
                     ),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                children: [
-                  const Text(
-                    "or",
-                    style: TextStyle(
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 18, horizontal: 140.0),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(17.6)),
+                    ),
+                    onPressed: () {},
+                    child: const Text(
+                      "Login",
+                      style: TextStyle(
+                        color: Colors.white,
                         fontFamily: "Hamon Bold",
-                        fontSize: 16,
-                        color: Color(0xFF696969)),
-                  ),
-                  const SizedBox(height: 15,),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 15.0,
-                        horizontal: 24.0,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18),
-                        side: const BorderSide(color: Color(0xFFD1D1D1)),
+                        fontSize: 19,
                       ),
                     ),
-                    onPressed: () {
-                      // Ação do botão Google
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset('assets/img/google_logo.png', height: 26.0),
-                        const SizedBox(width: 12.0),
-                        const Text(
-                          'Continue with Google',
-                          style: TextStyle(
-                              color: Color(0xFF2A2A2A),
-                              fontSize: 17,
-                              fontFamily: "Hamon"),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 65),
+                  child: Row(
+                    children: [
+                      const Text(
+                        "Don't have an account?",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: "Hamon",
+                          color: Color(0xFF696969),
                         ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 25,),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 15.0,
-                        horizontal: 24.0,
                       ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18),
-                        side: const BorderSide(color: Color(0xFFD1D1D1)),
-                      ),
-                    ),
-                    onPressed: () {
-                      // Ação do botão Google
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset('assets/img/apple_logo.png', height: 26.0),
-                        const SizedBox(width: 12.0),
-                        const Text(
-                          'Continue with Apple',
+                      TextButton(
+                        onPressed: () {},
+                        child: const Text(
+                          "Sign Up",
                           style: TextStyle(
-                              color: Color(0xFF2A2A2A),
-                              fontSize: 17,
-                              fontFamily: "Hamon"),
+                              fontFamily: "Hamon Bold",
+                              fontSize: 16,
+                              color: Colors.black),
                         ),
-                      ],
-                    ),
+                      )
+                    ],
                   ),
-                ],
-              ),
-            )
-          ],
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Column(
+                    children: [
+                      const Text(
+                        "or",
+                        style: TextStyle(
+                            fontFamily: "Hamon Bold",
+                            fontSize: 16,
+                            color: Color(0xFF696969)),
+                      ),
+                      const SizedBox(height: 15,),
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 15.0,
+                            horizontal: 24.0,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18),
+                            side: const BorderSide(color: Color(0xFFD1D1D1)),
+                          ),
+                        ),
+                        onPressed: () {
+                          // Ação do botão Google
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset('assets/img/google_logo.png', height: 26.0),
+                            const SizedBox(width: 12.0),
+                            const Text(
+                              'Continue with Google',
+                              style: TextStyle(
+                                  color: Color(0xFF2A2A2A),
+                                  fontSize: 17,
+                                  fontFamily: "Hamon"),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 25,),
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 15.0,
+                            horizontal: 24.0,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18),
+                            side: const BorderSide(color: Color(0xFFD1D1D1)),
+                          ),
+                        ),
+                        onPressed: () {
+                          // Ação do botão Google
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset('assets/img/apple_logo.png', height: 26.0),
+                            const SizedBox(width: 12.0),
+                            const Text(
+                              'Continue with Apple',
+                              style: TextStyle(
+                                  color: Color(0xFF2A2A2A),
+                                  fontSize: 17,
+                                  fontFamily: "Hamon"),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
       backgroundColor: Colors.white,
