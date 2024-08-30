@@ -244,11 +244,15 @@ class _HomeState extends State<Home> {
                 children: [
                   const Text(
                     "Don't have an account?",
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontFamily: "Hamon",
+                      color: Color(0xFF696969),
+                    ),
                   ),
                   TextButton(
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       "Sign Up",
                       style: TextStyle(
                           fontFamily: "Hamon Bold",
@@ -256,6 +260,80 @@ class _HomeState extends State<Home> {
                           color: Colors.black),
                     ),
                   )
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                children: [
+                  const Text(
+                    "or",
+                    style: TextStyle(
+                        fontFamily: "Hamon Bold",
+                        fontSize: 16,
+                        color: Color(0xFF696969)),
+                  ),
+                  const SizedBox(height: 15,),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 15.0,
+                        horizontal: 24.0,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18),
+                        side: const BorderSide(color: Color(0xFFD1D1D1)),
+                      ),
+                    ),
+                    onPressed: () {
+                      // Ação do botão Google
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset('assets/img/google_logo.png', height: 26.0),
+                        const SizedBox(width: 12.0),
+                        const Text(
+                          'Continue with Google',
+                          style: TextStyle(
+                              color: Color(0xFF2A2A2A),
+                              fontSize: 17,
+                              fontFamily: "Hamon"),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 25,),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 15.0,
+                        horizontal: 24.0,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18),
+                        side: const BorderSide(color: Color(0xFFD1D1D1)),
+                      ),
+                    ),
+                    onPressed: () {
+                      // Ação do botão Google
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset('assets/img/apple_logo.png', height: 26.0),
+                        const SizedBox(width: 12.0),
+                        const Text(
+                          'Continue with Apple',
+                          style: TextStyle(
+                              color: Color(0xFF2A2A2A),
+                              fontSize: 17,
+                              fontFamily: "Hamon"),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             )
