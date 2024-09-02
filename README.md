@@ -8,6 +8,6 @@ O objetivo principal deste repositório é servir como um ambiente de aprendizad
 
 ## Projetos
 
-1. **Projeto 1** - Uma projeto de uma página de Login.
+1. **Login Page** - Uma projeto de uma página de Login.
 
 Sinta-se à vontade para explorar e contribuir!
