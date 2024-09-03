@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login_page/main.dart';
 
@@ -314,7 +315,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       TextButton(
                         onPressed: () {
                           Navigator.of(context).push(
-                            MaterialPageRoute(
+                            CupertinoPageRoute(
                               builder: (context) => const Home(),
                             ),
                           );
