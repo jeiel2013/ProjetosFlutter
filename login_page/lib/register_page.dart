@@ -1,35 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:login_page/register_page.dart';
+import 'package:login_page/main.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const Home(),
-    );
-  }
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class Home extends StatefulWidget {
-  const Home({super.key});
-
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
+class _RegisterPageState extends State<RegisterPage> {
   bool isChecked = false;
   String selectedCountryCode = '+1';
   final List<String> countryCodes = [
@@ -47,6 +26,8 @@ class _HomeState extends State<Home> {
 
   final TextEditingController _controller = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _twoPasswordController = TextEditingController();
   bool _obscureText = true;
 
   @override
@@ -63,7 +44,7 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text(
-          "Login",
+          "Register",
           style: TextStyle(
             fontFamily: "Hamon Bold",
             fontSize: 30,
@@ -77,14 +58,14 @@ class _HomeState extends State<Home> {
       body: SingleChildScrollView(
         // Envolva o Column com SingleChildScrollView
         child: Padding(
-          padding: const EdgeInsets.only(top: 110),
+          padding: const EdgeInsets.only(top: 20),
           child: Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -98,7 +79,6 @@ class _HomeState extends State<Home> {
                       ),
                       const SizedBox(height: 10),
                       TextField(
-                        inputFormatters: [LengthLimitingTextInputFormatter(11)],
                         controller: _controller,
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
@@ -154,7 +134,48 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Enter your email",
+                        style: TextStyle(
+                          fontFamily: "Hamon",
+                          fontSize: 17,
+                          color: Color(0xFF2A2A2A),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      TextField(
+                        controller: _emailController,
+                        decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18),
+                            borderSide: const BorderSide(
+                              color: Color(0xFFD1D1D1),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18),
+                            borderSide: const BorderSide(
+                              color: Color(0xFFD1D1D1),
+                            ),
+                          ),
+                          hintText: 'abc123@gmail.com',
+                          hintStyle: TextStyle(
+                            color: const Color(0xFF696969).withOpacity(0.5),
+                            fontFamily: "Hamon",
+                          ),
+                        ),
+                        keyboardType: TextInputType.text,
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -206,31 +227,70 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.only(left: 190),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      "Forgot password?",
-                      style: TextStyle(
-                          fontSize: 16.43,
-                          fontFamily: "Hamon",
-                          color: Color(0xFF2A2A2A)),
-                    ),
+                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Re-Enter your password",
+                        style: TextStyle(
+                          fontSize: 17,
+                          color: Color(0xFF2A2A2A),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      TextField(
+                        controller: _twoPasswordController,
+                        obscureText: _obscureText,
+                        decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18),
+                            borderSide: const BorderSide(
+                              color: Color(0xFFD1D1D1),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18),
+                            borderSide: const BorderSide(
+                              color: Color(0xFFD1D1D1),
+                            ),
+                          ),
+                          hintText: '*********',
+                          hintStyle: TextStyle(
+                            color: const Color(0xFF696969).withOpacity(0.5),
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Colors.black,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
+                          ),
+                        ),
+                        keyboardType: TextInputType.text,
+                      ),
+                    ],
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                   child: TextButton(
                     style: TextButton.styleFrom(
                       backgroundColor: Colors.black,
                       padding: const EdgeInsets.symmetric(
-                          vertical: 18, horizontal: 140.0),
+                          vertical: 18, horizontal: 130.0),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(17.6)),
                     ),
                     onPressed: () {},
                     child: const Text(
-                      "Login",
+                      "Sign Up",
                       style: TextStyle(
                         color: Colors.white,
                         fontFamily: "Hamon Bold",
@@ -244,7 +304,7 @@ class _HomeState extends State<Home> {
                   child: Row(
                     children: [
                       const Text(
-                        "Don't have an account?",
+                        "Already have an account?",
                         style: TextStyle(
                           fontSize: 16,
                           fontFamily: "Hamon",
@@ -255,12 +315,12 @@ class _HomeState extends State<Home> {
                         onPressed: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => const RegisterPage(),
+                              builder: (context) => const Home(),
                             ),
                           );
                         },
                         child: const Text(
-                          "Sign Up",
+                          "Sign In",
                           style: TextStyle(
                               fontFamily: "Hamon Bold",
                               fontSize: 16,
@@ -315,7 +375,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       const SizedBox(
-                        height: 25,
+                        height: 15,
                       ),
                       TextButton(
                         style: TextButton.styleFrom(
@@ -344,6 +404,9 @@ class _HomeState extends State<Home> {
                             ),
                           ],
                         ),
+                      ),
+                      const SizedBox(
+                        height: 35,
                       ),
                     ],
                   ),
