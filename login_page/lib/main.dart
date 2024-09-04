@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:login_page/forgot.dart';
 import 'package:login_page/register_page.dart';
 
 void main() {
@@ -209,7 +210,13 @@ class _HomeState extends State<Home> {
                 Container(
                   padding: const EdgeInsets.only(left: 190),
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        CupertinoPageRoute(
+                          builder: (context) => const ForgotPassword(),
+                        ),
+                      );
+                    },
                     child: const Text(
                       "Forgot password?",
                       style: TextStyle(
