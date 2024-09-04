@@ -124,6 +124,7 @@ class _HomeState extends State<Home> {
                             padding: const EdgeInsets.only(left: 16.0),
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton<String>(
+                                dropdownColor: Colors.white,
                                 value: selectedCountryCode,
                                 onChanged: (String? newValue) {
                                   setState(() {
